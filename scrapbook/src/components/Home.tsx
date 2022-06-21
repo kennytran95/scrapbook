@@ -1,10 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Form from "./Form";
 import "./Home.css";
 
-function Home() {
-  const [form, setForm] = useState(false);
-  const [memory, setMemories] = useState(false);
+const Home: React.FC = () => {
+  const [form, setForm] = useState<boolean>(false);
+  const [memory, setMemories] = useState<boolean>(false);
 
   function toggleForm() {
     setForm(!form);
@@ -40,6 +40,6 @@ function Home() {
       )}
     </>
   );
-}
+};
 
 export default Home;

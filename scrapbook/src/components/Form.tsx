@@ -1,15 +1,15 @@
 import { useState } from "react";
 import "./Form.css";
 
-function Form() {
+const Form: React.FC = () => {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
 
-  function changeFormName(name) {
+  function changeFormName(name: string) {
     setName(name);
   }
 
-  function changeLocation(location) {
+  function changeLocation(location: string) {
     setLocation(location);
   }
 
@@ -22,7 +22,7 @@ function Form() {
             type="text"
             name="name"
             placeholder="What is your name?"
-            maxLength="60"
+            maxLength={60}
             onChange={(event) => {
               changeFormName(event.target.value);
             }}
@@ -34,7 +34,7 @@ function Form() {
             type="text"
             name="location"
             placeholder="Select a loction"
-            maxLength="200"
+            maxLength={200}
             onChange={(event) => {
               changeLocation(event.target.value);
             }}
@@ -55,6 +55,6 @@ function Form() {
       </form>
     </>
   );
-}
+};
 
 export default Form;
