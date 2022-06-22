@@ -1,8 +1,33 @@
-form {
+.centered {
+  background-color: transparent;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)),
+    url("https://cdn.discordapp.com/attachments/938570207859970061/988947393410134116/thumb-1920-938936.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  padding: 1rem;
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.create-form {
   background-color: #f7f7f9;
   border: 3px solid #f1f1f1;
+  color: black;
   padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin: 0 auto;
+}
+
+label {
+  color: black;
 }
 
 input,
@@ -33,4 +58,32 @@ select {
 
 .review-button:hover {
   background-size: 100% 100rem;
+}
+
+.go-back-btn {
+  align-self: center;
+  width: 25%;
+  height: 45px;
+  color: white;
+  background-color: #827397;
+  border: 0;
+  transition: all 200ms ease-in-out;
+}
+
+.go-back-btn:hover {
+  opacity: 0.8;
+}
+
+.submit-btn {
+  align-self: center;
+  width: 75%;
+  height: 45px;
+  color: rgb(0, 0, 0);
+  background-color: #c4bbf0;
+  border: 0;
+  transition: all 200ms ease-in-out;
+}
+
+.submit-btn:hover {
+  opacity: 0.8;
 }

@@ -1,43 +1,26 @@
 import React, { useState } from "react";
 import Form from "./Form";
+import Memories from "./Memories";
 import "./Home.css";
 
 const Home: React.FC = () => {
   const [form, setForm] = useState<boolean>(false);
   const [memory, setMemories] = useState<boolean>(false);
 
-  function toggleForm() {
-    setForm(!form);
-  }
-  function toggleMemories() {
-    setMemories(!memory);
-  }
-
   return (
     <>
-      {!form && !memory ? (
-        <div className="centered">
-          <button onClick={() => toggleForm()} className="create-btn">
+      {!form && !memory && (
+        <div className="btn-container">
+          <button onClick={() => setForm(true)} className="create-btn">
             CREATE A NEW MEMORY
           </button>
-          <button onClick={() => toggleMemories()} className="create-btn">
+          <button onClick={() => setMemories(true)} className="create-btn">
             SHOW PAST MEMORIES
           </button>
         </div>
-      ) : (
-        <div className="centered">
-          <Form />
-          <button
-            className="create-btn"
-            onClick={() => {
-              setForm(false);
-              setMemories(false);
-            }}
-          >
-            GO BACK
-          </button>
-        </div>
       )}
+      {form && <Form setForm={setForm} />}
+      {memory && <Memories setMemories={setMemories} />}
     </>
   );
 };

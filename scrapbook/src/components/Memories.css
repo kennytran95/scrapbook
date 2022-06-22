@@ -1,0 +1,35 @@
+* {
+  color: white;
+}
+
+.back-btn {
+  width: 10%;
+  height: 40px;
+  color: white;
+  background-color: #827397;
+  border: 0;
+  border-radius: 1rem;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  transition: all 200ms ease-in-out;
+}
+
+.back-btn:hover {
+  opacity: 0.8;
+}
+
+.memories-container {
+  padding: 1rem;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0 auto;
+  /* border: solid 5px cyan; */
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)),
+    url("https://cdn.discordapp.com/attachments/938570207859970061/988947392957128715/tree.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

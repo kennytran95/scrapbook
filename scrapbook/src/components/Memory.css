@@ -1,0 +1,25 @@
+* {
+  color: black;
+  font-family: "Nanum Gothic";
+}
+
+p {
+  height: 7px;
+}
+
+.postcard-container {
+  border: solid 5px rgb(212, 212, 212);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 200px;
+  background-color: rgb(224, 224, 224);
+}
+
+.postcard-img {
+  height: 25vh;
+  min-width: 20vw;
+  border-radius: 2rem;
+  object-fit: contain;
+}

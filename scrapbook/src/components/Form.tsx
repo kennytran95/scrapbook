@@ -1,9 +1,13 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./Form.css";
 
-const Form: React.FC = () => {
-  const [name, setName] = useState("");
-  const [location, setLocation] = useState("");
+interface Props {
+  setForm: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Form: React.FC<Props> = ({ setForm }) => {
+  const [name, setName] = useState<string>("");
+  const [location, setLocation] = useState<string>("");
 
   function changeFormName(name: string) {
     setName(name);
@@ -14,8 +18,8 @@ const Form: React.FC = () => {
   }
 
   return (
-    <>
-      <form>
+    <div className="centered">
+      <form className="create-form">
         <label htmlFor="name">
           Name
           <input
@@ -53,7 +57,10 @@ const Form: React.FC = () => {
         <br />
         <button className="submit-btn">Submit</button>
       </form>
-    </>
+      <button className="go-back-btn" onClick={() => setForm(false)}>
+        Go Back
+      </button>
+    </div>
   );
 };
 

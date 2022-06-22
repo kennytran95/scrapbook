@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const morgan = require("morgan");
+const cors = require("cors");
 const db = require("./database/db.js");
 require("dotenv").config();
 
@@ -10,6 +11,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "../build")));
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(cors());
 
 app.post("/scrapbook", (req, res) => {
   const { id, name, date, location, memPhotos, foodPhotos, song } = req.body;
