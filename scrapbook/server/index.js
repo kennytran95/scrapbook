@@ -5,7 +5,7 @@ const cors = require("cors");
 const db = require("./database/db.js");
 require("dotenv").config();
 
-const PORT = process.env.PORT || 2121;
+const PORT = 2222;
 
 const app = express();
 app.use(express.static(path.join(__dirname, "../build")));
@@ -14,14 +14,12 @@ app.use(morgan("dev"));
 app.use(cors());
 
 app.post("/scrapbook", (req, res) => {
-  const { id, name, date, location, memPhotos, foodPhotos, song } = req.body;
+  const { name, date, location, photos, song } = req.body;
   const scrapbookResult = {
-    id,
     name,
     date,
     location,
-    memPhotos,
-    foodPhotos,
+    photos,
     song,
   };
   db.addMemory(scrapbookResult)
@@ -37,6 +35,6 @@ app.get("/scrapbook", (req, res) => {
     .catch((err) => console.error(err));
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(PORT, () => {
   console.log(`Scrapbook server is up and running on port: ${PORT}`);
 });

@@ -3,12 +3,10 @@ const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/scrapbook", { useNewUrlParser: true });
 
 const scrapbookSchema = new mongoose.Schema({
-  id: { type: Number, unique: true },
   name: String,
   date: { type: Date, default: Date.now },
   location: String,
-  memPhotos: [String],
-  foodPhotos: [String],
+  photos: [String],
   song: String,
 });
 
