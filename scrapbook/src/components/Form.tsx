@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./Form.css";
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 const Form: React.FC<Props> = ({ setForm }) => {
   const [name, setName] = useState<string>("");
   const [location, setLocation] = useState<string>("");
+  const [memPhotos, setMemPhotos] = useState<string[]>([]);
 
   function changeFormName(name: string) {
     setName(name);
@@ -15,6 +17,21 @@ const Form: React.FC<Props> = ({ setForm }) => {
 
   function changeLocation(location: string) {
     setLocation(location);
+  }
+
+  function uploadImages(event: any): void {
+    const bodyFormData = new FormData();
+    bodyFormData.append("file", event.target.files[0]);
+    bodyFormData.append("upload_preset", "nvtzqoul");
+    axios
+      .post(
+        "https://api.cloudinary.com/v1_1/dppbuevux/image/upload",
+        bodyFormData
+      )
+      .then((response) => {
+        setMemPhotos([...memPhotos, response.data.url]);
+      })
+      .catch((err) => console.error(err));
   }
 
   return (
@@ -52,10 +69,13 @@ const Form: React.FC<Props> = ({ setForm }) => {
             accept="image/*"
             name="photos"
             className="review-button"
+            onChange={uploadImages}
           />
         </label>
         <br />
-        <button className="submit-btn">Submit</button>
+        <button className="submit-btn" type="submit">
+          Submit
+        </button>
       </form>
       <button className="go-back-btn" onClick={() => setForm(false)}>
         Go Back
