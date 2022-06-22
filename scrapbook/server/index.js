@@ -20,6 +20,8 @@ app.use(cors());
 
 //spotify api
 
+let token;
+
 const generateRandomString = (length) => {
   let text = "";
   const possible =
@@ -84,6 +86,7 @@ app.get("/callback", (req, res) => {
             `http://localhost:2121/refresh_token?refresh_token=${refresh_token}`
           )
           .then((response) => {
+            token = response.data.access_token;
             res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
           })
           .catch((error) => res.send(error));
