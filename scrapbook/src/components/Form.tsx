@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { accessToken, logout, getCurrentUserProfile } from "./spotify";
 import "./Form.css";
+require("dotenv").config();
 
 interface Props {
   setForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -106,6 +107,7 @@ const Form: React.FC<Props> = ({ setForm }) => {
             }}
           />
         </label>
+        <div className="song-container"></div>
         {!token ? (
           <a className="spotify-link" href="http://localhost:2121/login">
             Log in to Spotify
