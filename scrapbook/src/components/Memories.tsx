@@ -13,8 +13,7 @@ export interface Memory {
   name: string;
   date: Date;
   location: string;
-  memPhotos: [string];
-  foodPhotos: [string];
+  photos: [string];
   song: string;
   __v: number;
 }

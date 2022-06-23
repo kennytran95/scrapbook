@@ -17,11 +17,12 @@ p {
   background-color: rgb(224, 224, 224);
   border-radius: 2px;
   box-shadow: 0 0 10px lightgray;
+  overflow: hidden;
 }
 
 .postcard-img {
-  height: 25vh;
-  min-width: 20vw;
+  height: 250px;
+  min-width: 100px;
   border-radius: 2rem;
   object-fit: contain;
 }

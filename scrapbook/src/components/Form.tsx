@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { accessToken, logout, getCurrentUserProfile } from "./spotify";
+// import { accessToken, logout, getCurrentUserProfile } from "./spotify";
 import "./Form.css";
-require("dotenv").config();
 
 interface Props {
   setForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,24 +11,25 @@ const Form: React.FC<Props> = ({ setForm }) => {
   const [name, setName] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [song, setSong] = useState<string>("");
+  // const [track, setTrack] = useState<any>(null);
   const [memPhotos, setMemPhotos] = useState<string[]>([]);
   const [token, setToken] = useState<string | null>(null);
   const [profile, setProfile] = useState<any>(null);
 
-  useEffect(() => {
-    setToken(accessToken);
+  // useEffect(() => {
+  //   setToken(accessToken);
 
-    const fetchData = async () => {
-      try {
-        const { data } = await getCurrentUserProfile();
-        setProfile(data);
-      } catch (e) {
-        console.error(e);
-      }
-    };
+  //   const fetchData = async () => {
+  //     try {
+  //       const { data } = await getCurrentUserProfile();
+  //       setProfile(data);
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   function changeFormName(name: string) {
     setName(name);
@@ -52,7 +52,11 @@ const Form: React.FC<Props> = ({ setForm }) => {
       date: Date.now(),
       photos: memPhotos,
     };
-    console.log(formResult);
+    console.log(formResult, "result");
+    axios
+      .post("/scrapbook", formResult)
+      .then(() => console.log("Successful Post"))
+      .catch((err) => console.error(err));
   }
 
   function uploadImages(event: any): void {
@@ -67,6 +71,18 @@ const Form: React.FC<Props> = ({ setForm }) => {
       .then((response) => setMemPhotos([...memPhotos, response.data.url]))
       .catch((error) => console.error(error));
   }
+
+  // function searchTrack(song: any): void {
+  //   axios
+  //     .get(`https://api.spotify.com/v1/tracks`, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     })
+  //     .then((result) => console.log(result.data))
+  //     .catch((err) => console.error(err));
+  // }
 
   return (
     <div className="centered">
@@ -95,7 +111,7 @@ const Form: React.FC<Props> = ({ setForm }) => {
             }}
           />
         </label>
-        <label htmlFor="song">
+        {/* <label htmlFor="song">
           Song
           <input
             type="search"
@@ -107,6 +123,9 @@ const Form: React.FC<Props> = ({ setForm }) => {
             }}
           />
         </label>
+        <button className="submit-btn" onClick={() => searchTrack(song)}>
+          Search
+        </button>
         <div className="song-container"></div>
         {!token ? (
           <a className="spotify-link" href="http://localhost:2121/login">
@@ -132,7 +151,7 @@ const Form: React.FC<Props> = ({ setForm }) => {
               Log out
             </button>
           </>
-        )}
+        )} */}
 
         <label htmlFor="photos">
           Upload
