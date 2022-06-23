@@ -12,10 +12,10 @@ const Home: React.FC = () => {
       {!form && !memory && (
         <div className="btn-container">
           <button onClick={() => setForm(true)} className="create-btn">
-            CREATE A NEW MEMORY
+            CREATE NEW MEMORY
           </button>
           <button onClick={() => setMemories(true)} className="create-btn">
-            SHOW PAST MEMORIES
+            GO TO MEMORIES
           </button>
         </div>
       )}

@@ -14,10 +14,19 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 
 const app = express();
+app.use(cors());
 app.use(express.static(path.join(__dirname, "../build")));
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(cors());
+
+//cloudinary
+
+// app.post("/upload", (req, res) => {
+//   console.log("hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+//   const url = "https://api.cloudinary.com/v1_1/dppbuevux/image/upload";
+//   console.log(req.body);
+//   res.send("hello youtube");
+// });
 
 //spotify api
 
@@ -40,7 +49,8 @@ app.get("/login", (req, res) => {
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-  const scope = "user-read-private user-read-email";
+  const scope =
+    "user-read-private user-read-email streaming user-library-read user-library-modify user-read-playback-state user-modify-playback-state";
 
   const queryParams = querystring.stringify({
     client_id: CLIENT_ID,

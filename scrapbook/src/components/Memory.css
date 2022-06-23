@@ -23,6 +23,7 @@ p {
 .postcard-img {
   height: 250px;
   min-width: 100px;
-  border-radius: 2rem;
+  width: 180px;
+  border-radius: 0.25rem;
   object-fit: contain;
 }

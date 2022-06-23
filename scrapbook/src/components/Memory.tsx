@@ -1,5 +1,6 @@
 import { Memory } from "./Memories";
 import "./Memory.css";
+import Player from "./Player";
 
 interface Props {
   dbMemory: Memory;

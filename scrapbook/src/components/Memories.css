@@ -33,3 +33,10 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.spotify-player {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  opacity: 0.8;
+}

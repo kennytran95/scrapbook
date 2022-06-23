@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Memories.css";
 import DbMemory from "./Memory";
+import Player from "./Player";
 
 interface Props {
   setMemories: React.Dispatch<React.SetStateAction<boolean>>;
@@ -38,6 +39,7 @@ const Memories: React.FC<Props> = ({ setMemories }) => {
         <button className="back-btn" onClick={() => setMemories(false)}>
           Go Back
         </button>
+        <Player />
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import { accessToken, logout, getCurrentUserProfile } from "./spotify";
+import { accessToken, logout, getCurrentUserProfile } from "./spotify";
 import "./Form.css";
 
 interface Props {
@@ -11,25 +11,25 @@ const Form: React.FC<Props> = ({ setForm }) => {
   const [name, setName] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [song, setSong] = useState<string>("");
-  // const [track, setTrack] = useState<any>(null);
+  const [track, setTrack] = useState<any>(null);
   const [memPhotos, setMemPhotos] = useState<string[]>([]);
   const [token, setToken] = useState<string | null>(null);
   const [profile, setProfile] = useState<any>(null);
 
-  // useEffect(() => {
-  //   setToken(accessToken);
+  useEffect(() => {
+    setToken(accessToken);
 
-  //   const fetchData = async () => {
-  //     try {
-  //       const { data } = await getCurrentUserProfile();
-  //       setProfile(data);
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-  //   };
+    const fetchData = async () => {
+      try {
+        const { data } = await getCurrentUserProfile();
+        setProfile(data);
+      } catch (e) {
+        console.error(e);
+      }
+    };
 
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
 
   function changeFormName(name: string) {
     setName(name);
@@ -60,6 +60,7 @@ const Form: React.FC<Props> = ({ setForm }) => {
   }
 
   function uploadImages(event: any): void {
+    console.log(event.target.files[0]);
     const bodyFormData = new FormData();
     bodyFormData.append("file", event.target.files[0]);
     bodyFormData.append("upload_preset", "nvtzqoul");
@@ -72,17 +73,17 @@ const Form: React.FC<Props> = ({ setForm }) => {
       .catch((error) => console.error(error));
   }
 
-  // function searchTrack(song: any): void {
-  //   axios
-  //     .get(`https://api.spotify.com/v1/tracks`, {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     })
-  //     .then((result) => console.log(result.data))
-  //     .catch((err) => console.error(err));
-  // }
+  function searchTrack(song: any): void {
+    axios
+      .get(`https://api.spotify.com/v1/tracks`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((result) => console.log(result.data))
+      .catch((err) => console.error(err));
+  }
 
   return (
     <div className="centered">
@@ -111,7 +112,7 @@ const Form: React.FC<Props> = ({ setForm }) => {
             }}
           />
         </label>
-        {/* <label htmlFor="song">
+        <label htmlFor="song">
           Song
           <input
             type="search"
@@ -123,7 +124,7 @@ const Form: React.FC<Props> = ({ setForm }) => {
             }}
           />
         </label>
-        <button className="submit-btn" onClick={() => searchTrack(song)}>
+        <button className="submit-btn" onClick={() => console.log(song)}>
           Search
         </button>
         <div className="song-container"></div>
@@ -151,7 +152,7 @@ const Form: React.FC<Props> = ({ setForm }) => {
               Log out
             </button>
           </>
-        )} */}
+        )}
 
         <label htmlFor="photos">
           Upload

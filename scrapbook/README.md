@@ -4,9 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+### `npm concurrently to run create-react-app(port 2222) & server (port 2121) with api routes at the same time`
+
 In the project directory, you can run:
 
-### `npm start`
+### `npm start to run front end portion & npm server to run back-end server with api routes`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
