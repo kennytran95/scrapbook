@@ -21,7 +21,7 @@ export interface Memory {
 
 const Memories: React.FC<Props> = ({ setMemories }) => {
   const [dbMemories, setDbMemories] = useState<Memory[]>([]);
-  const url = "http://localhost:2222/scrapbook";
+  const url = "http://localhost:2121/scrapbook";
 
   useEffect(() => {
     (async () => {
@@ -34,7 +34,7 @@ const Memories: React.FC<Props> = ({ setMemories }) => {
     <>
       <div className="memories-container">
         {dbMemories.map((dbMemory) => (
-          <DbMemory dbMemory={dbMemory} key={dbMemory.id} />
+          <DbMemory dbMemory={dbMemory} key={dbMemory._id} />
         ))}
         <button className="back-btn" onClick={() => setMemories(false)}>
           Go Back

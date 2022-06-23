@@ -22,7 +22,8 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  width: 25%;
+  width: 600px;
+  height: 700px;
   margin: 0 auto;
 }
 
@@ -53,7 +54,7 @@ select {
   background-position: left bottom;
   display: inline-block;
   transition: all 900ms ease;
-  width: 40%;
+  width: 400px;
 }
 
 .review-button:hover {
@@ -62,7 +63,7 @@ select {
 
 .go-back-btn {
   align-self: center;
-  width: 25%;
+  width: 600px;
   height: 45px;
   color: white;
   background-color: #827397;
@@ -86,4 +87,49 @@ select {
 
 .submit-btn:hover {
   opacity: 0.8;
+}
+
+.spotify-link {
+  background-color: #1ed760;
+  border-radius: 2rem;
+  box-shadow: 0 0 10px lightgray;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  width: 200px;
+  height: 50px;
+  align-self: center;
+  padding: 1rem;
+  margin: 20px;
+  transition: all 500ms ease-in-out;
+  background-image: linear-gradient(
+    90deg,
+    rgba(51, 6, 156, 0.4),
+    rgba(72, 0, 216, 0.2)
+  );
+  background-size: 0% 100rem;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.spotify-link:hover {
+  opacity: 0.8;
+  color: white;
+  animation-name: spotify-btn-hover;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  background-size: 100% 100rem;
+}
+
+@keyframes spotify-btn-hover {
+  0% {
+    transform: translate(0px);
+  }
+  50% {
+    transform: translate(0px, -5px);
+  }
+
+  100% {
+    transform: translate(0px);
+  }
 }

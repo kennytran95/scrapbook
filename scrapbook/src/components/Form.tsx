@@ -9,6 +9,7 @@ interface Props {
 const Form: React.FC<Props> = ({ setForm }) => {
   const [name, setName] = useState<string>("");
   const [location, setLocation] = useState<string>("");
+  const [song, setSong] = useState<string>("");
   const [memPhotos, setMemPhotos] = useState<string[]>([]);
 
   function changeFormName(name: string) {
@@ -17,6 +18,22 @@ const Form: React.FC<Props> = ({ setForm }) => {
 
   function changeLocation(location: string) {
     setLocation(location);
+  }
+
+  function changeSong(song: string) {
+    setSong(song);
+  }
+
+  function handleSubmit(event: React.SyntheticEvent) {
+    event.preventDefault();
+    const formResult = {
+      name,
+      location,
+      song,
+      date: Date.now(),
+      photos: memPhotos,
+    };
+    console.log(formResult);
   }
 
   function uploadImages(event: any): void {
@@ -28,15 +45,13 @@ const Form: React.FC<Props> = ({ setForm }) => {
         "https://api.cloudinary.com/v1_1/dppbuevux/image/upload",
         bodyFormData
       )
-      .then((response) => {
-        setMemPhotos([...memPhotos, response.data.url]);
-      })
-      .catch((err) => console.error(err));
+      .then((response) => setMemPhotos([...memPhotos, response.data.url]))
+      .catch((error) => console.error(error));
   }
 
   return (
     <div className="centered">
-      <form className="create-form">
+      <form className="create-form" onSubmit={handleSubmit}>
         <label htmlFor="name">
           Name
           <input
@@ -61,6 +76,21 @@ const Form: React.FC<Props> = ({ setForm }) => {
             }}
           />
         </label>
+        <label htmlFor="song">
+          Song
+          <input
+            type="search"
+            name="song"
+            placeholder="Search song/artist"
+            maxLength={100}
+            onChange={(event) => {
+              changeSong(event.target.value);
+            }}
+          />
+        </label>
+        <a className="spotify-link" href="http://localhost:2121/login">
+          Log in to Spotify
+        </a>
         <label htmlFor="photos">
           Upload
           <br />
@@ -69,7 +99,7 @@ const Form: React.FC<Props> = ({ setForm }) => {
             accept="image/*"
             name="photos"
             className="review-button"
-            onChange={uploadImages}
+            onChange={(event) => uploadImages(event)}
           />
         </label>
         <br />
@@ -77,7 +107,13 @@ const Form: React.FC<Props> = ({ setForm }) => {
           Submit
         </button>
       </form>
-      <button className="go-back-btn" onClick={() => setForm(false)}>
+      <button
+        className="go-back-btn"
+        type="submit"
+        onClick={() => {
+          setForm(false);
+        }}
+      >
         Go Back
       </button>
     </div>
