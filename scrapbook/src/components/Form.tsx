@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { accessToken, logout, getCurrentUserProfile } from "./spotify";
 import "./Form.css";
 
 interface Props {
@@ -11,6 +12,23 @@ const Form: React.FC<Props> = ({ setForm }) => {
   const [location, setLocation] = useState<string>("");
   const [song, setSong] = useState<string>("");
   const [memPhotos, setMemPhotos] = useState<string[]>([]);
+  const [token, setToken] = useState<string | null>(null);
+  const [profile, setProfile] = useState<any>(null);
+
+  useEffect(() => {
+    setToken(accessToken);
+
+    const fetchData = async () => {
+      try {
+        const { data } = await getCurrentUserProfile();
+        setProfile(data);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   function changeFormName(name: string) {
     setName(name);
@@ -88,9 +106,32 @@ const Form: React.FC<Props> = ({ setForm }) => {
             }}
           />
         </label>
-        <a className="spotify-link" href="http://localhost:2121/login">
-          Log in to Spotify
-        </a>
+        {!token ? (
+          <a className="spotify-link" href="http://localhost:2121/login">
+            Log in to Spotify
+          </a>
+        ) : (
+          <>
+            {profile && (
+              <div>
+                <p>
+                  <i>Hello {profile.display_name}</i>
+                </p>
+                {profile.images.length && profile.images[0].url && (
+                  <img
+                    src={profile.images[0].url}
+                    alt="Avatar"
+                    className="spotify-avatar"
+                  />
+                )}
+              </div>
+            )}
+            <button onClick={logout} className="spotify-logout-btn">
+              Log out
+            </button>
+          </>
+        )}
+
         <label htmlFor="photos">
           Upload
           <br />
